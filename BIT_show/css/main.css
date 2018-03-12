@@ -1,0 +1,21 @@
+h1, h3 {
+  text-align: center; }
+
+.row {
+  width: 100%; }
+
+form {
+  float: left; }
+
+.img {
+  width: 100%; }
+
+#movie_container, #one_show {
+  margin: 0 auto;
+  width: 70%; }
+
+.optionStyle {
+  width: 190px;
+  border-bottom: 1px solid gray; }
+
+/*# sourceMappingURL=main.css.map */

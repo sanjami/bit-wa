@@ -1,17 +1,22 @@
-// const p1 = new Promise((resolve, reject) => {
-//     setTimeout(resolve(1), 1000) ;
-// })
-// .then(function(x){
-//     console.log(x);
-// });
+const arr = [];
 
-for(var i = 0; i < 99; i++){
+for(let i = 0; i < 99; i++){
     
-    var p = new Promise((resolve, reject) => {
-        setTimeout(function(){
-            resolve(i)}, 500*Math.random());
-    })
+    arr.push(new Promise((resolve, reject) => {
+        setTimeout(() => resolve(i), 1000 * Math.random());
+    }));
 }
-        p.then(function(id){
-            console.log(id);
-        })
+    
+    // arr.map(promise => {
+    //     promise.then((id) => {
+    //         console.log(id)
+    //     })
+    // })
+
+    // Promise.race(arr).then((id) => {
+    //     console.log(id);
+    // });
+
+    Promise.all(arr).then((id) => {
+        console.log(id);
+    });

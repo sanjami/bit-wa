@@ -15,5 +15,5 @@ export default function presentData(msg){
         container.append(img);
         $('#result').append(container);
     }
-    location.reload();
+  //  location.reload();
 }

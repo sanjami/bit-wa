@@ -1,17 +1,5 @@
-import {
-    Season,
-    Cast,
-    AKA,
-    Crew,
-    Show,
-    TvShows
-} from './dataModule.js';
-import {
-    makeListOfMovies,
-    makeOneMovie,
-    selectors,
-    makeSearchList
-} from './UIModule.js';
+import { Season, Cast, AKA, Crew, Show, TvShows } from './dataModule.js';
+import { makeListOfMovies, makeOneMovie, selectors, makeSearchList } from './UIModule.js';
 
 function init() {
 
@@ -40,12 +28,21 @@ function init() {
             makeListOfMovies(tvShows.showsList)
         })
 
-    // search box
 
+    $('#search_box').change(function (event) {
+        var value = $('#search_box').val();
+        var element = $(`*[value='${value}']`);
+        var id = element.attr("data-id");
+        window.location.href = `showInfoPage.html#${id}`
+    })
+
+}
+
+function searchBox() {
     $('#search_box').keyup(function (event) {
         let value = (this).value;
 
-
+        var show;
         const url = `http://api.tvmaze.com/search/shows?q=${value}`,
 
             request = new Request(url, {
@@ -68,44 +65,12 @@ function init() {
 
     })
 
-    $('#search_box').change(function (event) {
-        var value = $('#search_box').val();
-        var element = $(`*[value='${value}']`);
-        var id = element.attr("data-id");
-        window.location.href = `showInfoPage.html#${id}`
-    })
 
 }
-
-
 
 function initSinglePage() {
 
     var show;
-
-    $('#search_box').keyup(function (event) {
-        let value = (this).value;
-
-        const url = `http://api.tvmaze.com/search/shows?q=${value}`,
-        request = new Request(url, {
-            method: 'GET'
-        });
-            fetch(request)
-            .then(function (response) {
-                return response.json();
-            })
-
-            .then(function (msg) {
-                $("#serch_list").empty();
-                let tenMsg = msg.slice(0, 10);
-                tenMsg.forEach(element => {
-                    let movieName = element.show.name;
-                    let id = element.show.id;
-                    makeSearchList(movieName, id);
-                })
-            })
-
-    })
 
     $('#search_box').change(function (event) {
         var value = $('#search_box').val();
@@ -120,9 +85,9 @@ function initSinglePage() {
 
     const url = `http://api.tvmaze.com/shows/${id}?embed[]=seasons&embed[]=cast&embed[]=crew&embed[]=akas`;
     const request = new Request(url, {
-            method: 'GET'
-        });
-        fetch(request)
+        method: 'GET'
+    });
+    fetch(request)
         .then(function (response) {
             return response.json();
         })
@@ -158,5 +123,6 @@ function initSinglePage() {
 
 export {
     init,
-    initSinglePage
+    initSinglePage,
+    searchBox
 }

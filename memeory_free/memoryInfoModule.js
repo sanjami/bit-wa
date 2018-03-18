@@ -1,4 +1,5 @@
 const os = require('os');
+const figlet = require('figlet');
 
 const callbackArray = [];
 
@@ -11,9 +12,18 @@ const checkmemory = () => {
     intervalId = setInterval(() => {
         let memory = os.freemem() / 1024 / 1024
         console.log(memory);
-        if (memory < 1600) {
+        if (memory < 1800) {
             for (let i = 0; i < callbackArray.length; i++) {
-                callbackArray[i]("Memory is less than 1500MB");
+
+                const message = function (text) {
+                    return figlet.textSync(text, {
+                        font: 'Ghost',
+                        horizontalLayout: 'full',
+                        verticalLayout: 'full'
+                    })
+                };
+                let messageText = message("Memory is less than 1500MB");
+                callbackArray[i](messageText);
             }
         }
     }, 1000)

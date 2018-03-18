@@ -1,3 +1,4 @@
-import { init }  from './mainModule.js'
+import { init, searchBox }  from './mainModule.js'
 
 init();
+searchBox()

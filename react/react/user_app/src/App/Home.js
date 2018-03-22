@@ -52,7 +52,8 @@ class Home extends Component {
       usersService.UserFunction()
         .then((myUsers) => {
           this.setState({
-            users: myUsers
+            users: myUsers,
+            filterUsers: myUsers     
           })
         })
     }

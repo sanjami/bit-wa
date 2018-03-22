@@ -38,7 +38,7 @@ const UsersListItem =(props) => {
     const female = () => {
         if(props.user.gender === 'female') {
             return ( 
-                <li className="collection-item avatar red lighten-3">
+                <li className="collection-item avatar red lighten-5">
                 <img src={props.user.picture} alt={props.user.firstName} className="circle"/>
                 <span className="title">{name}</span>
                 <p><i className="material-icons">email</i>{email()} <br/>
@@ -46,7 +46,7 @@ const UsersListItem =(props) => {
                 </p>
             </li>)}
            return ( 
-            <li className="collection-item avatar">
+            <li className="collection-item avatar blue lighten-5">
             <img src={props.user.picture} alt={props.user.firstName} className="circle"/>
             <span className="title">{name}</span>
             <p><i className="material-icons">email</i>{email()} <br/>

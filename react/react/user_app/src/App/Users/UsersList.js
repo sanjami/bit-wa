@@ -4,11 +4,11 @@ import UserListItem from './UsersListItem'
 const UsersList =(props) => {
 
     return (
-    <ul className="collection">
-       {props.users.map((user, i) => {
-           return <UserListItem user={user} key={i}/>
-       })}
-     </ul>
+        <ul className="collection">
+        {props.users.map((user, i) => {
+            return <UserListItem user={user} key={i}/>
+        })}
+        </ul>
     )
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 
 const LoadingElement = () => {
     return (
-        <div className="sk-cube-grid teal lighten-2 ">
+        <div className="sk-cube-grid red lighten-2 ">
             <div className="sk-cube sk-cube1 teal lighten-2"></div>
             <div className="sk-cube sk-cube2 teal lighten-2"></div>
             <div className="sk-cube sk-cube3 teal lighten-2"></div>

@@ -65,3 +65,16 @@ body {
             transform: scale3D(0, 0, 1);
   } 
 }
+
+.sentiment {
+  padding: 150px 0;
+}
+
+.gender {
+  padding: 20px;
+  margin-right: 150px
+}
+
+.collection-item.avatar.lighten-5  {
+    margin-top: 23px;
+}

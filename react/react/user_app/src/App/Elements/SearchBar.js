@@ -3,7 +3,7 @@ import React  from 'react';
 const SearchBar =(props)=> {
     return (
         <nav>
-            <div className="nav-wrapper">
+            <div className=" container nav-wrapper">
                 <form>
                     <div className="input-field">
                         <input id="search" type="search" onChange={props.handleChange} value={props.inputValue} required />

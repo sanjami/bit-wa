@@ -1,14 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-const PostLinks = () => {
+const PostLinks = (props) => {
+
     return (
         <div className='container'>
         <ul className="collection with-header">
         <li className="collection-header"><h4>3 more posts from same author</h4></li>
-        <a href="#posts:1" className="collection-item">Title 10- velit, vulputate</a>
-        <a href="#posts:2" className="collection-item">Title 11- tortor mauris m</a>
-        <a href="#posts:3" className="collection-item">Title 12- enean velit</a>
+        {props.authorsPosts.slice(0, 3).map((post) => {
+            return <Link to={window.location.pathname} className="collection-item" key={post.postId}>{post.title}</Link>
+        })}
       </ul>
       </div>
             

@@ -40,7 +40,6 @@ class GetAllPost {
             return fetch(`https://jsonplaceholder.typicode.com/users/${id}`) 
                 .then((response) => response.json())
                 .then((author) => {
-                    console.log(author)
                     return new Author(author)
                 })
            } 
@@ -72,7 +71,7 @@ const allPostService = new GetAllPost();
 const onePostService = new GetOnePost();
 const allAuthorsService = new GetAllAuthors();
 const oneAuthorService = new GetOneAuthor();
-const authorsPosts = new GetPostsForAuthor();
+const authorsPostsService = new GetPostsForAuthor();
 const newPostService = new AddPost();
 
-export  {allPostService, onePostService, allAuthorsService, oneAuthorService, authorsPosts, newPostService}
+export  {allPostService, onePostService, allAuthorsService, oneAuthorService, authorsPostsService, newPostService}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PostContent from './PostContent';
 import PostLinks from './PostLinks';
-import { onePostService, authorsPosts } from '../../Services/dataService';
+import { onePostService, oneAuthorService, authorsPostsService } from '../../Services/dataService';
 
 
 class PostDetails extends React.Component {
@@ -9,7 +9,8 @@ class PostDetails extends React.Component {
         super(props);
         this.state = {
             post: {},
-            postsForAuthor: []
+            postsForAuthor: [],
+            authorName: []
         }
     }
 
@@ -19,13 +20,19 @@ class PostDetails extends React.Component {
             this.setState({
                 post: myPost
             });
-            return authorsPosts.postForAuthorFunction(myPost.authorId)
-        })      
+            return oneAuthorService.oneAuthorFunction(myPost.authorId)
+        })
+        .then((myAuthor) => {
+            this.setState({
+                authorName: myAuthor.name
+            })
+            return authorsPostsService.postForAuthorFunction(myAuthor.authorId)
+        })     
         .then((authorsPosts) => {
             this.setState({
                 postsForAuthor: authorsPosts
             })
-        });
+        })
     }
 
     componentDidMount() {
@@ -43,13 +50,12 @@ class PostDetails extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <PostContent post={this.state.post}/>              
+                <PostContent post={this.state.post} authorName={this.state.authorName}/>              
                 <PostLinks authorsPosts={this.state.postsForAuthor}/>
             </React.Fragment>
         )
     }
 }
-
 
 
 export default PostDetails;

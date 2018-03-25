@@ -54,11 +54,25 @@ class GetAllPost {
         }
     }
 
+    class AddPost {
+        addPostFunction = (post) => {
+            return fetch ('https://jsonplaceholder.typicode.com/posts', {
+                body: JSON.stringify(post), // must match 'Content-Type' header
+                headers: {
+                  'content-type': 'application/json'
+                },
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+              })
+              .then(response => response.json()) // parses response to JSON
+            }
+        }
+
    
 const allPostService = new GetAllPost(); 
 const onePostService = new GetOnePost();
 const allAuthorsService = new GetAllAuthors();
 const oneAuthorService = new GetOneAuthor();
 const authorsPosts = new GetPostsForAuthor();
+const newPostService = new AddPost();
 
-export  {allPostService, onePostService, allAuthorsService, oneAuthorService, authorsPosts}
+export  {allPostService, onePostService, allAuthorsService, oneAuthorService, authorsPosts, newPostService}

@@ -9,7 +9,7 @@ const AboutAuthor = (props) => {
             <div className="col s12 m7">
                 <div className="card horizontal">
                     <div >
-                        <img src="https://www.forever21.com/us/shop/_common/images/profile_simley.png"/>
+                        <img src="https://www.forever21.com/us/shop/_common/images/profile_simley.png" alt={props.author.username}/>
                     </div>
                         <div className="card-stacked">
                             <div className="card-content">

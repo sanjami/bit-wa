@@ -13,7 +13,7 @@ class PostDetails extends React.Component {
         }
     }
 
-    componentDidMount() {
+    getData = () => {
         onePostService.onePostFunction(this.props.match.params.id)
         .then((myPost) => {
             this.setState({
@@ -28,9 +28,19 @@ class PostDetails extends React.Component {
         });
     }
 
+    componentDidMount() {
+        this.getData();
+    }
+
+    componentWillReceiveProps = (nextProps) => {
+        if(nextProps.match.params.id !== this.props.match.params.id) {
+            window.location.reload();
+        }
+
+    }
+
 
     render() {
-        console.log(this.props)
         return (
             <React.Fragment>
                 <PostContent post={this.state.post}/>              

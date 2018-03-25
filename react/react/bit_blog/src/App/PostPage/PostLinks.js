@@ -8,7 +8,7 @@ const PostLinks = (props) => {
         <ul className="collection with-header">
         <li className="collection-header"><h4>3 more posts from same author</h4></li>
         {props.authorsPosts.slice(0, 3).map((post) => {
-            return <Link to={window.location.pathname} className="collection-item" key={post.postId}>{post.title}</Link>
+            return <Link to={`/posts${post.id}`} className="collection-item" key={post.id}>{post.title}</Link>
         })}
       </ul>
       </div>

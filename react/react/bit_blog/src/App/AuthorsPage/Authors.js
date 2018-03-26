@@ -1,24 +1,24 @@
 import React from 'react';
 import AuthorsList from './AuthorsList';
-import { allAuthorsService } from '../../Services/dataService';
+import { dataService } from '../../Services/dataService'
 
 
 class Authors extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             authors: []
         }
     }
 
     componentDidMount() {
-        allAuthorsService.allAuthorsFunction()
-        .then((myAuthors) => {
-            this.setState({
-                authors: myAuthors
+        dataService.allAuthorsFunction()
+        .then((allAuthors) => {
+            this.setState ({
+                authors: allAuthors
             })
         })
-    }
+        }
 
     render() {
         return (

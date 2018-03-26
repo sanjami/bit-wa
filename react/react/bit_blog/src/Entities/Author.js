@@ -14,10 +14,6 @@ class Author {
         this.authorId = author.id;
         this.authorsPosts = []
     }
-    addPost = (post) => {
-        this.authorsPosts.push(post)
-    }
-
 }
 
 export default Author;

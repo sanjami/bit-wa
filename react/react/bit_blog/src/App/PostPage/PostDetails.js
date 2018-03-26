@@ -1,61 +1,68 @@
 import React from 'react';
 import PostContent from './PostContent';
 import PostLinks from './PostLinks';
-import { onePostService, oneAuthorService, authorsPostsService } from '../../Services/dataService';
+import { dataService } from '../../Services/dataService';
 
 
 class PostDetails extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
-            post: {},
-            postsForAuthor: [],
-            authorName: []
+            onePost: {},
+            author: {},
+            posts: []
         }
     }
 
-    getData = () => {
-        onePostService.onePostFunction(this.props.match.params.id)
-        .then((myPost) => {
-            this.setState({
-                post: myPost
-            });
-            return oneAuthorService.oneAuthorFunction(myPost.authorId)
-        })
-        .then((myAuthor) => {
-            this.setState({
-                authorName: myAuthor.name
+    getData = (postId) => {
+        dataService.onePostFunction(postId)
+            .then((myPost) => {
+                this.setState({
+                    onePost: myPost
+                })
+                dataService.oneAuthorFunction(myPost.authorId)
+                    .then((oneAuthor) => {
+                        this.setState({
+                            author: oneAuthor
+                        })
+                        dataService.authorPostsFunction(oneAuthor.authorId)
+                            .then((authorPost) => {
+                                this.setState({
+                                    posts: authorPost
+                                })
+                            })
+                    })
             })
-            return authorsPostsService.postForAuthorFunction(myAuthor.authorId)
-        })     
-        .then((authorsPosts) => {
-            this.setState({
-                postsForAuthor: authorsPosts
-            })
-        })
     }
 
     componentDidMount() {
-        this.getData();
+        var postId = this.props.match.params.id;
+        this.getData(postId)
     }
 
-    componentWillReceiveProps = (nextProps) => {
-        if(nextProps.match.params.id !== this.props.match.params.id) {
-            window.location.reload();
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.match.params.id !== this.props.match.params.id) {
+            var postId = nextProps.match.params.id
+            this.getData(postId);
         }
+    }
 
+    filterPost = () => {
+        let newArrayPost = this.state.posts.filter((post) => this.props.match.params.id !== post.postId )
+        return newArrayPost;
     }
 
 
     render() {
         return (
             <React.Fragment>
-                <PostContent post={this.state.post} authorName={this.state.authorName}/>              
-                <PostLinks authorsPosts={this.state.postsForAuthor}/>
+                <PostContent onePost={this.state.onePost} author={this.state.author} />
+                <PostLinks allPosts={this.filterPost()} />
             </React.Fragment>
         )
     }
 }
+
 
 
 export default PostDetails;

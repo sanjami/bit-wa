@@ -1,6 +1,6 @@
 import React from 'react';
-import PostList from './PostsList';
-import { allPostService } from '../../Services/dataService';
+import PostList from './PostsList'
+import { dataService } from '../../Services/dataService';
 
 
 class Home extends React.Component {
@@ -10,18 +10,19 @@ class Home extends React.Component {
             posts: []
         }
     }
-componentDidMount() {
-    allPostService.allPostFunction()
-    .then((myPosts) => {
-        this.setState({
-            posts: myPosts
-        })
-    })
-}
+
+    componentDidMount() {
+        dataService.allPostFunction()
+            .then((myPosts) => {
+                this.setState({
+                    posts: myPosts
+                })
+            })
+    }
 
     render() {
         return (
-            <PostList posts={this.state.posts}/>  
+            <PostList data={this.state.posts} />  
         )
     }
 }
